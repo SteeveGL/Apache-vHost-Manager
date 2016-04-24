@@ -307,39 +307,45 @@ def main():
         epilog = 'Bug reports send to alex.oleshkevich@gmail.com'
     )
 
-    group = parser.add_mutually_exclusive_group()
+    root_group = parser.add_mutually_exclusive_group()
 
     # create
-    group.add_argument('-c', '--create', help='create a new vhost', action='store_true', dest='create', default=False)
-    parser.add_argument('--subdir', help='point document root this subdirectory', action='store', dest='subdir', default=None)
-    parser.add_argument('--sample', help='add sample index.html file', action='store_true', dest='sample', default=None)
-    parser.add_argument('--ip', help='bind to that IP address', action='store', dest='ip', default='*')
-    parser.add_argument('--ssl', help='use SSL for that vhost', action='store_true', dest='ssl', default=False)
-    parser.add_argument('--dump', help='dump vhost config', action='store_true', dest='dump', default=False)
-    parser.add_argument('--mysql', help='create mysql database with same name as vhost', action='store_true', dest='mysql', default=False)
+    groupcreate = root_group.add_mutually_exclusive_group()
+    groupcreate.add_argument('-c', '--create', help='create a new vhost', action='store_true', dest='create', default=False)
+    groupcreate.add_argument('--subdir', help='point document root this subdirectory', action='store', dest='subdir', default=None)
+    groupcreate.add_argument('--sample', help='add sample index.html file', action='store_true', dest='sample', default=None)
+    groupcreate.add_argument('--ip', help='bind to that IP address', action='store', dest='ip', default='*')
+    groupcreate.add_argument('--ssl', help='use SSL for that vhost', action='store_true', dest='ssl', default=False)
+    groupcreate.add_argument('--dump', help='dump vhost config', action='store_true', dest='dump', default=False)
+    groupcreate.add_argument('--mysql', help='create mysql database with same name as vhost', action='store_true', dest='mysql', default=False)
+    #groupcreate.add_argument('name', help='vhost name', action='store', default=False)
 
     # enable
-    group.add_argument('-e', '--enable', help='enable existing vhost', action='store_true', dest='enable', default=False)
+    groupenable = root_group.add_mutually_exclusive_group()
+    groupenable.add_argument('-e', '--enable', help='enable existing vhost', action='store_true', dest='enable', default=False)
 
     # disable
-    group.add_argument('-d', '--disable', help='disable vhost', action='store_true', dest='disable', default=False)
+    groupdisable = root_group.add_mutually_exclusive_group()
+    groupdisable.add_argument('-d', '--disable', help='disable vhost', action='store_true', dest='disable', default=False)
 
     # alter
-    group.add_argument('-a', '--alter', help='alter vhost (opens GUI editor)', action='store_true', dest='alter', default=False)
+    parser.add_argument('-a', '--alter', help='alter vhost (opens GUI editor)', action='store_true', dest='alter', default=False)
 
     # remove
-    group.add_argument('-r', '--remove', help='remove vhost', action='store_true', dest='remove', default=False)
-    parser.add_argument('--purge', help='also remove site files', action='store_true', dest='purge', default=False)
+    groupremove = root_group.add_mutually_exclusive_group()
+    groupremove.add_argument('-r', '--remove', help='remove vhost', action='store_true', dest='remove', default=False)
+    groupremove.add_argument('--purge', help='also remove site files', action='store_true', dest='purge', default=False)
 
     # list
-    parser.add_argument('-l', '--list', help='list vhosts', action='store_true', dest='list', default=False)
-    parser.add_argument('--enabled', help='show only enabled vhosts', action='store_true', dest='only_enabled', default=False)
+    grouplist = root_group.add_mutually_exclusive_group()
+    grouplist.add_argument('-l', '--list', help='list vhosts', action='store_true', dest='list', default=False)
+    grouplist.add_argument('--enabled', help='show only enabled vhosts', action='store_true', dest='only_enabled', default=False)
 
     # info
-    group.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
+    parser.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
 
     # vhost name
-    group.add_argument('name', help='vhost name', action='store', default=False)
+    #parser.add_argument('name', help='vhost name', action='store', default=False)
 
     args = parser.parse_args()
 
