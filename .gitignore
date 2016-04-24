@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 .hg
 
 /vendor/
 /nbproject
+=======
+*.pyc
+.idea
+>>>>>>> master

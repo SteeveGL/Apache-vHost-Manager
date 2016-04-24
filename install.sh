@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
-if [ -f "/usr/bin/vhost" ];
-then
-echo 'Reinstallation.'
-else
-echo 'Installation.'
+
+DIR=/home/`whoami`/.vhost
+if [[ ! -d $DIR ]] ; then
+    mkdir -p ~/.vhost
 fi
 
-echo 'Installing directories'
-mkdir -p ~/.vhost/var
-mkdir -p ~/.vhost/share
+cp -vR share ~/.vhost
+sudo cp -v vhost.py /usr/bin/vhost
+sudo ln -sv $DIR /root/.vhost
 
-echo 'Installing files'
-cp -R --remove-destination etc/config.ini ~/.vhost/
-cp -R --remove-destination share/* ~/.vhost/share
-cp -R --remove-destination vhost.py /usr/bin/vhost
-cp -R --remove-destination include/*.py /usr/lib/python2.6
+if [ ! -f ~/.vhost/vhost.conf ]; then
+    cp -v vhost.conf ~/.vhost/vhost.conf
+    xdg-open ~/.vhost/vhost.conf
+fi
 
-echo 'Done. Now run vhost -h to get help'
