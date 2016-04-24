@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-DIR=/home/`whoami`/.vhost
+DIR=~/.vhost
 if [[ ! -d $DIR ]] ; then
     mkdir -p ~/.vhost
-    sudo ln -sv $DIR /root/.vhost
+#    sudo ln -sv $DIR /root/.vhost
 fi
 
 cp -vR share ~/.vhost

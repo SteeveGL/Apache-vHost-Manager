@@ -7,3 +7,8 @@
 *.pyc
 .idea
 >>>>>>> master
+/Apache-vHost-Manager.sln
+/Apache-vHost-Manager.pyproj.user
+/Apache-vHost-Manager.pyproj
+/.vs/Apache-vHost-Manager/v14/.suo
+/.vs/Apache-vHost-Manager/v14
