@@ -11,6 +11,4 @@ sudo ln -sv $DIR /root/.vhost
 
 if [ ! -f ~/.vhost/vhost.conf ]; then
     cp -v vhost.conf ~/.vhost/vhost.conf
-    xdg-open ~/.vhost/vhost.conf
 fi
-
