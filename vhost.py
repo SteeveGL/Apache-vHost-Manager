@@ -336,15 +336,12 @@ def main():
     parser.add_argument('--enabled', help='show only enabled vhosts', action='store_true', dest='only_enabled', default=False)
 
     # info
-    parser.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
+    group.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
 
     # vhost name
-    parser.add_argument('name', help='vhost name', action='store', default=False)
+    group.add_argument('name', help='vhost name', action='store', default=False)
 
     args = parser.parse_args()
-
-    if args.list:
-        args.name = ''
 
     if not args.dump and not args.alter and not args.list and not args.info:
         if getpass.getuser() != 'root':
