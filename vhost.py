@@ -339,7 +339,7 @@ def main():
     parser.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
 
     # vhost name
-    parser.add_argument('name', action='store', default=False, help='vhost name')
+    parser.add_argument('name', help='vhost name', action='store', dest='name', default=False)
 
     args = parser.parse_args()
 
