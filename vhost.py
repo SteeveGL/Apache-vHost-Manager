@@ -339,13 +339,12 @@ def main():
     parser.add_argument('-i', '--info', help='vhosts details', action='store_true', dest='info', default=False)
 
     # vhost name
-    parser.add_argument('name', help='vhost name', action='store', default=None)
+    parser.add_argument('name', help='vhost name', action='store', default=False)
 
     args = parser.parse_args()
 
-    if not args.list and args.name == None:
-        print ('vhost: error: the following arguments are required: name')
-        sys.exit()
+    if args.list:
+        args.name = ''
 
     if not args.dump and not args.alter and not args.list and not args.info:
         if getpass.getuser() != 'root':
